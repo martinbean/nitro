@@ -1,0 +1,87 @@
+name: WCW Nitro
+sha1: a7d74cfcbaba650f07d445790a2652f8456c83f1
+options:
+  basename: slus_003.97
+  target_path: disc/SLUS_003.97
+  elf_path: build/slus_003.97.elf
+  base_path: ..
+  platform: psx
+  compiler: PSYQ
+
+  asm_path: asm/slus_003.97
+  src_path: src/slus_003.97
+  build_path: build
+  # create_asm_dependencies: True
+
+  ld_script_path: linker/slus_003.97.ld
+  ld_dependencies: True
+
+  find_file_boundaries: False
+  gp_value: 0x80054C60
+
+  o_as_suffix: False
+  use_legacy_include_asm: False
+
+  asm_function_macro: glabel
+  asm_jtbl_label_macro: jlabel
+  asm_data_macro: dlabel
+
+  section_order: [".rodata", ".text", ".data", ".bss"]
+  # auto_link_sections: [".data", ".rodata", ".bss"]
+
+  symbol_addrs_path:
+    - config/symbol_addrs.slus_003.97.txt
+  reloc_addrs_path:
+    - config/reloc_addrs.txt
+
+  undefined_funcs_auto_path: linker/undefined_funcs_auto.slus_003.97.txt
+  undefined_syms_auto_path: linker/undefined_syms_auto.slus_003.97.txt
+
+  extensions_path: tools/splat_ext
+
+  subalign: 4
+
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+segments:
+  - name: header
+    type: header
+    start: 0x0
+
+  - name: main
+    type: code
+    start: 0x800
+    vram: 0x80010000
+    align: 4
+    # bss_size: Please fill out this value when you figure out the bss size
+    subsegments:
+      - [0x800, rodata, 800]
+      - [0x4704, asm, main]
+      - [0x4B6C, asm, 4B6C]
+      - [0x54B8, asm, files]
+      - [0x57EC, asm, 57EC]
+      - [0x7B00, asm, movie]
+      - [0x850C, asm, audio]
+      - [0x9018, asm, '9018']
+      - [0x90DC, asm, libspu]
+      - [0xF1B8, asm, libsn]
+      - [0xF2E4, asm, libetc]
+      - [0xFFD0, asm, libcd]
+      - [0x1416C, asm, libgte] # libgte and libgs
+      - [0x166A0, textbin, libgte_signature]
+      - [0x166A8, asm, libgte_continued]
+      - [0x24630, asm, libgpu]
+      - [0x28054, asm, libpress] # DecDCTReset
+      - [0x28B4C, asm, libcard] # _bu_init
+      - [0x28E88, textbin, libcard_signature]
+      - [0x28E90, asm, 28E90] # std_out_puts
+      - [0x28EB8, asm, libc2] # strcat
+      - [0x29830, asm, libapi] # InitHeap
+      - [0x29860, textbin, libapi_signature]
+      - [0x29868, asm, 29868] # CdRemove
+      - [0x29D58, data, 29D58] # estimated
+      - [0x2A150, data, 2A150] # fileinfo
+      - [0x2C568, data, 2C568] # movieinfo
+  - [0x45800]

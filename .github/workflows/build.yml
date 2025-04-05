@@ -1,0 +1,37 @@
+name: Build
+
+on: push
+
+jobs:
+  build:
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      S3_BUCKET: ${{ secrets.S3_BUCKET }}
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get --assume-yes --quiet install binutils-mips-linux-gnu build-essential cpp-mips-linux-gnu gcc-mips-linux-gnu git python3
+      - name: Configure Python
+        uses: actions/setup-python@v5
+        with:
+          cache: 'pip'
+          python-version: '3.11'
+      - name: Install Python packages
+        run: pip install --requirement requirements.txt
+      - name: Download ROM
+        run: aws s3 cp s3://${{ env.S3_BUCKET }}/nitro/SLUS_003.97 disc/SLUS_003.97
+      - name: Make
+        run: |
+          make setup
+          make
+      - name: Check
+        run: make check

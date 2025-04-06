@@ -1,3 +1,6 @@
 [submodule "tools/rle"]
 	path = tools/rle
 	url = https://github.com/martinbean/inland-rle.git
+[submodule "tools/maspsx"]
+	path = tools/maspsx
+	url = https://github.com/mkst/maspsx.git

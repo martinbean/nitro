@@ -6,7 +6,25 @@ Create a PR with the function(s) you wish to contribute matching C code for. A G
 ## Coding conventions and style guide
 Some conventions I’ve stuck to:
 
-* Using snake_case for function names, i.e. `decode_data` instead of `DecodeData`. This helps distinguish game functions from PsyQ library functions, which _do_ use PascalCase (i.e. `GsInitGraph`).
-* Using tabs for indentation. It occupies one character, and users can choose how many spaces that maps to in their text editor/IDE.
+- Using “snake_case” for function names, i.e. `decode_data` instead of `DecodeData`. This helps distinguish game functions from Psy-Q library functions, which use PascalCase (i.e. `GsInitGraph`).
+- *Tabs* for indentation. It occupies one character, and users can choose how many spaces that maps to in their text editor/IDE.
+- Descriptive names that aren’t needlessly abbreviated.
+- Opening braces for functions and control structures on new lines.
 
-However, if someone has a strong argument for a change to the above then I’m happy to hear it, as I do not program in C day to day.
+An example of a function and control structure using the above conventions:
+
+```c
+void some_foo_function(void)
+{
+	if (some_condition())
+	{
+		do_something();
+	}
+	else
+	{
+		do_something_else();
+	}
+}
+```
+
+However, I don’t program in C day to day, so if any one has a strong argument for a change to the above then please do suggest it!

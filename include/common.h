@@ -2,7 +2,6 @@
 #define _COMMON_H
 
 #include "include_asm.h"
-#include "types.h"
 
 #define PSX_SCRATCH ((void*)0x1F800000)
 

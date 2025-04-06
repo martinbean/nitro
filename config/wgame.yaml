@@ -1,0 +1,58 @@
+name: "WCW Nitro (game overlay)"
+sha1: 18c29f1ebe6c61f0e8a9095eb7e484266ea3cd52
+options:
+  basename: wgame.bin
+  target_path: disc/WGAME.BIN
+  base_path: ../
+  platform: psx
+  compiler: PSYQ
+
+  asm_path: asm/wgame
+  src_path: src/wgame
+  build_path: build/
+
+  ld_script_path: linker/wgame.ld
+
+  find_file_boundaries: False
+  gp_value: 0x80054c60
+  global_vram_start: 0x80010000
+
+  o_as_suffix: False
+  use_legacy_include_asm: False
+
+  asm_function_macro: glabel
+  asm_jtbl_label_macro: jlabel
+  asm_data_macro: dlabel
+
+  section_order: [".rodata", ".text", ".data", ".bss"]
+
+  symbol_addrs_path:
+    - config/symbol_addrs.wgame.txt
+    - config/symbol_addrs.slus_003.97.txt
+  reloc_addrs_path:
+    - configs/reloc_addrs.wgame.txt
+
+  undefined_funcs_auto_path: linker/undefined_funcs_auto.wgame.txt
+  undefined_syms_auto_path: linker/undefined_syms_auto.wgame.txt
+
+  extensions_path: tools/splat_ext
+
+  subalign: 4
+
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+segments:
+  - name: wgame
+    type: code
+    start: 0x0
+    align: 4
+    subalign: 4
+    vram: 0x80065ee4
+    subsegments:
+      - [0x0, rodata]
+      - [0x920, asm] # WGAME overlay main function
+      - [0xD34, asm, D34] # WGAME overlay functions continue
+      - [0x15548, data, 15548] # WGAME overlay functions end
+  - [0x18c010]

@@ -29,6 +29,12 @@ jobs:
         run: pip install --requirement requirements.txt
       - name: Download ROM
         run: aws s3 cp s3://${{ env.S3_BUCKET }}/nitro/SLUS_003.97 disc/SLUS_003.97
+      - name: Download decoded overlays
+        run: |
+          aws s3 cp s3://${{ env.S3_BUCKET }}/nitro/WGAME.BIN disc/WGAME.BIN
+          aws s3 cp s3://${{ env.S3_BUCKET }}/nitro/WMENU.BIN disc/WMENU.BIN
+      - name: Download Psy-Q headers
+        run: aws s3 cp s3://${{ env.S3_BUCKET }}/psyq/include include/psyq --recursive
       - name: Make
         run: |
           make setup

@@ -53,6 +53,8 @@ segments:
     subsegments:
       - [0x0, rodata]
       - [0xA20, asm] # start of WMENU overlay functions
+      - [0x22F4, asm, card] # WMENU overlay card-related functions
+      - [0x3018, asm] # WMENU overlay functions continue
       - [0x44B8, asm, main] # WMENU overlay main function
       - [0xF3F8, asm] # WMENU overlay functions continue
       - [0xFE64, data] # WMENU overlay functions end

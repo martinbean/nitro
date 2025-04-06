@@ -1,0 +1,10 @@
+draw_image = 0x80066c18; // type:func
+draw_active_bg = 0x800670c4; // type:func
+draw_wrestler_portrait = 0x80067e9c; // type:func
+_card_event = 0x800681d8; // type:func
+_clear_event = 0x800682bc; // type:func
+_card_event_x = 0x80068324; // type:func
+_clear_event_x = 0x80068408; // type:func
+handle_cheats = 0x80069008; // type:func
+main = 0x8006a39c; // type:func
+init_menu = 0x8007550c; // type:func

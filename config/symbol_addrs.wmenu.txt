@@ -1,3 +1,7 @@
+play_unlock_sound_1 = 0x80066904; // type:func
+play_unlock_sound_2 = 0x800669c0; // type:func
+play_unlock_sound_3 = 0x80066a78; // type:func
+play_unlock_sound_4 = 0x80066b34; // type:func
 draw_image = 0x80066c18; // type:func
 draw_active_bg = 0x800670c4; // type:func
 draw_wrestler_portrait = 0x80067e9c; // type:func

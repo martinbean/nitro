@@ -52,7 +52,8 @@ segments:
     vram: 0x80065ee4
     subsegments:
       - [0x0, rodata]
-      - [0xA20, asm] # start of WMENU overlay functions
+      - [0xA20, c, sounds] # start of WMENU overlay functions
+      - [0xD34, asm, drawing] # WMENU overlay drawing-related functions
       - [0x22F4, c, card] # WMENU overlay card-related functions
       - [0x3018, asm] # WMENU overlay functions continue
       - [0x44B8, asm, main] # WMENU overlay main function

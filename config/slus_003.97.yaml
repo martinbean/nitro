@@ -83,5 +83,6 @@ segments:
       - [0x29868, asm, 29868] # CdRemove
       - [0x29D58, data, 29D58] # estimated
       - [0x2A150, data, 2A150] # fileinfo
-      - [0x2C568, data, 2C568] # movieinfo
+      - [0x2C568, data, movieinfo] # movieinfo
+      - [0x2CC28, data, 2CC28] # start of libspu data
   - [0x45800]

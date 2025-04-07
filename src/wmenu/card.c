@@ -2,32 +2,32 @@
 
 extern int TestEvent(int);
 
-extern int D_801B1D08; // ev0
-extern int D_801B1D0C; // ev1
-extern int D_801B1D10; // ev2
-extern int D_801B1D14; // ev3
-extern int D_801B1D20; // ev10
-extern int D_801B1D24; // ev11
-extern int D_801B1D28; // ev12
-extern int D_801B1D2C; // ev13
+extern int ev0;
+extern int ev1;
+extern int ev2;
+extern int ev3;
+extern int ev10;
+extern int ev11;
+extern int ev12;
+extern int ev13;
 
 int _card_event()
 {
 	while (1) {
 		// IOE
-		if (TestEvent(D_801B1D08) == 1) {
+		if (TestEvent(ev0) == 1) {
 			return 0;
 		}
 		// ERROR
-		if (TestEvent(D_801B1D0C) == 1) {
+		if (TestEvent(ev1) == 1) {
 			return 1;
 		}
 		// TIMEOUT
-		if (TestEvent(D_801B1D10) == 1) {
+		if (TestEvent(ev2) == 1) {
 			return 2;
 		}
 		// NEW CARD
-		if (TestEvent(D_801B1D14) == 1) {
+		if (TestEvent(ev3) == 1) {
 			return 3;
 		}
 	}
@@ -35,29 +35,29 @@ int _card_event()
 
 void _clear_event(void)
 {
-	TestEvent(D_801B1D08);
-	TestEvent(D_801B1D0C);
-	TestEvent(D_801B1D10);
-	TestEvent(D_801B1D14);
+	TestEvent(ev0);
+	TestEvent(ev1);
+	TestEvent(ev2);
+	TestEvent(ev3);
 }
 
 int _card_event_x(void)
 {
 	while(1)
 	{
-		if (TestEvent(D_801B1D20) == 1)
+		if (TestEvent(ev10) == 1)
 		{
 			return 0;
 		}
-		if (TestEvent(D_801B1D24) == 1)
+		if (TestEvent(ev11) == 1)
 		{
 			return 1;
 		}
-		if (TestEvent(D_801B1D28) == 1)
+		if (TestEvent(ev12) == 1)
 		{
 			return 2;
 		}
-		if (TestEvent(D_801B1D2C) == 1)
+		if (TestEvent(ev13) == 1)
 		{
 			return 3;
 		}
@@ -66,10 +66,10 @@ int _card_event_x(void)
 
 void _clear_event_x(void)
 {
-	TestEvent(D_801B1D20);
-	TestEvent(D_801B1D24);
-	TestEvent(D_801B1D28);
-	TestEvent(D_801B1D2C);
+	TestEvent(ev10);
+	TestEvent(ev11);
+	TestEvent(ev12);
+	TestEvent(ev13);
 }
 
 INCLUDE_ASM("asm/wmenu/nonmatchings/card", func_80068470);

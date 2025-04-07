@@ -1,33 +1,39 @@
 #include "common.h"
+#include "nitro.h"
 
-extern int TestEvent(int);
+extern uint32_t TestEvent(uint32_t); // libapi
 
-extern int ev0;
-extern int ev1;
-extern int ev2;
-extern int ev3;
-extern int ev10;
-extern int ev11;
-extern int ev12;
-extern int ev13;
+extern uint32_t ev0;
+extern uint32_t ev1;
+extern uint32_t ev2;
+extern uint32_t ev3;
+extern uint32_t ev10;
+extern uint32_t ev11;
+extern uint32_t ev12;
+extern uint32_t ev13;
 
-int _card_event()
+uint32_t _card_event()
 {
-	while (1) {
+	while (1)
+	{
 		// IOE
-		if (TestEvent(ev0) == 1) {
+		if (TestEvent(ev0) == 1)
+		{
 			return 0;
 		}
 		// ERROR
-		if (TestEvent(ev1) == 1) {
+		if (TestEvent(ev1) == 1)
+		{
 			return 1;
 		}
 		// TIMEOUT
-		if (TestEvent(ev2) == 1) {
+		if (TestEvent(ev2) == 1)
+		{
 			return 2;
 		}
 		// NEW CARD
-		if (TestEvent(ev3) == 1) {
+		if (TestEvent(ev3) == 1)
+		{
 			return 3;
 		}
 	}
@@ -41,7 +47,7 @@ void _clear_event(void)
 	TestEvent(ev3);
 }
 
-int _card_event_x(void)
+uint32_t _card_event_x(void)
 {
 	while(1)
 	{

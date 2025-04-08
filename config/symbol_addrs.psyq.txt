@@ -1,0 +1,11 @@
+CdControl = 0x8001fd0c; // type:func
+CdControlB = 0x8001ff70; // type:func
+CdControlF = 0x8001fe44; // type:func
+CdReadyCallback = 0x8001fcf4; // type:func
+CdSyncCallback = 0x8001fcdc; // type:func
+SsSetMVol = 0x80019c44; // type:func
+SsSetSerialAttr = 0x8001981c; // type:func
+SsSetSerialVol = 0x8001b234; // type:func
+SsUtKeyOffV = 0x8001ba14; // type:func
+SsUtSetVVol = 0x8001bbd8; // type:func
+SsVabClose = 0x8001dbd0; // type:func

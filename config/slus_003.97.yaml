@@ -30,6 +30,7 @@ options:
   # auto_link_sections: [".data", ".rodata", ".bss"]
 
   symbol_addrs_path:
+    - config/symbol_addrs.psyq.txt
     - config/symbol_addrs.slus_003.97.txt
   reloc_addrs_path:
     - config/reloc_addrs.txt
@@ -63,7 +64,7 @@ segments:
       - [0x54B8, c, files]
       - [0x57EC, asm, 57EC]
       - [0x7B00, asm, movie]
-      - [0x850C, asm, audio]
+      - [0x850C, c, audio]
       - [0x9018, asm, '9018']
       - [0x90DC, asm, libspu]
       - [0xF1B8, asm, libsn]
@@ -85,4 +86,5 @@ segments:
       - [0x2A150, data, 2A150] # fileinfo
       - [0x2C568, data, movieinfo] # movieinfo
       - [0x2CC28, data, 2CC28] # start of libspu data
+      - [0x4546C, sdata] # strWidth, strHeight, is_bg_error, etc.
   - [0x45800]

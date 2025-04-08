@@ -2,7 +2,17 @@
 #include "nitro.h"
 #include "psyq/LIBCD.H"
 
-INCLUDE_ASM("asm/slus_003.97/nonmatchings/files", cache_file_pos);
+extern FileInfo fileinfo[FILES_COUNT];
+
+void cache_file_pos(void)
+{
+	int i;
+
+	for (i = 0; i < sizeof(fileinfo) / sizeof(fileinfo[0]); i++)
+	{
+		find_file(&fileinfo[i], 1);
+	}
+}
 
 void seek_file(FileInfo *fileinfo)
 {

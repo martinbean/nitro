@@ -6,11 +6,13 @@
 #include "psyq/LIBCD.H"
 #include "types.h"
 
+#define FILES_COUNT 254
+
 typedef struct FileInfo {
 	char *filename;
 	char *cd_filename;
 	void *addr;
-	CdlFILE *fp;
+	CdlFILE fp;
 } FileInfo;
 
 #endif /* NITRO_H */

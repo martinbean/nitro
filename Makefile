@@ -33,7 +33,7 @@ SPLAT           := $(PYTHON) -m splat split
 MASPSX          := $(PYTHON) $(TOOLS_DIR)/maspsx/maspsx.py
 
 # Flags
-OPT_FLAGS           := -O0
+OPT_FLAGS           := -O2
 ENDIAN              := -EL
 INCLUDE_FLAGS       := -Iinclude -I $(BUILD_DIR) -Iinclude/psyq
 DEFINE_FLAGS        := -D_LANGUAGE_C -DUSE_INCLUDE_ASM
@@ -46,6 +46,12 @@ DL_Flags := -G0
 AS_FLAGS := $(ENDIAN) $(INCLUDE_FLAGS) $(OPT_FLAGS) $(DL_FLAGS) -march=r3000 -mtune=r3000 -no-pad-sections
 CC_FLAGS := $(OPT_FLAGS) $(DL_FLAGS) -mips1 -mcpu=3000 -w -funsigned-char -fpeephole -ffunction-cse -fpcc-struct-return -fcommon -fverbose-asm -msoft-float -mgas -fgnu-linker -quiet
 MASPSX_FLAGS := --aspsx-version=2.34 --run-assembler $(AS_FLAGS)
+
+define switch_optimization_option
+	$(if $(findstring slus,$(1)), $(eval AS_FLAGS := $(subst -O0,-O2,$(AS_FLAGS))), $(eval AS_FLAGS := $(subst -O2,-O0,$(AS_FLAGS))))
+	$(if $(findstring slus,$(1)), $(eval CC_FLAGS := $(subst -O0,-O2,$(CC_FLAGS))), $(eval CC_FLAGS := $(subst -O2,-O0,$(CC_FLAGS))))
+	$(if $(findstring slus,$(1)), $(eval LD_FLAGS := $(subst -O0,-O2,$(LD_FLAGS))), $(eval LD_FLAGS := $(subst -O2,-O0,$(LD_FLAGS))))
+endef
 
 ifeq ($(NON_MATCHING),1)
 	CPP_FLAGS := $(CPP_FLAGS) -DNON_MATCHING
@@ -180,19 +186,23 @@ $(foreach target,$(TARGET_IN),$(eval $(call make_elf_target,$(target),$(call get
 # Generate objects.
 $(BUILD_DIR)/%.i: %.c
 	@mkdir -p $(dir $@)
+	$(call switch_optimization_option,$@)
 	$(CPP) -P -MMD -MP -MT $@ -MF $@.d $(CPP_FLAGS) -o $@ $<
 
 $(BUILD_DIR)/%.c.s: $(BUILD_DIR)/%.i
 	@mkdir -p $(dir $@)
+	$(call switch_optimization_option,$@)
 	$(CC) $(CC_FLAGS) -o $@ $<
 
 $(BUILD_DIR)/%.c.o: $(BUILD_DIR)/%.c.s
 	@mkdir -p $(dir $@)
+	$(call switch_optimization_option,$@)
 	-$(MASPSX) $(MASPSX_FLAGS) -o $@ $<
 	-$(OBJDUMP) $(OBJDUMP_FLAGS) $@ > $(@:.o=.dump.s)
 
 $(BUILD_DIR)/%.s.o: %.s
 	@mkdir -p $(dir $@)
+	$(call switch_optimization_option,$@)
 	$(AS) $(AS_FLAGS) -o $@ $<
 
 $(BUILD_DIR)/%.bin.o: %.bin

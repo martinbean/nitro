@@ -60,7 +60,7 @@ segments:
       - [0x800, rodata, 800]
       - [0x4704, asm, main]
       - [0x4B6C, asm, 4B6C]
-      - [0x54B8, asm, files]
+      - [0x54B8, c, files]
       - [0x57EC, asm, 57EC]
       - [0x7B00, asm, movie]
       - [0x850C, asm, audio]

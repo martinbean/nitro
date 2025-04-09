@@ -1,6 +1,6 @@
 #include "common.h"
 #include "nitro.h"
-#include "psyq/LIBSND.H"
+#include "psyq/libsnd.h"
 
 extern uint32_t sfx_volume;
 extern uint32_t music_volume;

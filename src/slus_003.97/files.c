@@ -1,6 +1,6 @@
 #include "common.h"
 #include "nitro.h"
-#include "psyq/LIBCD.H"
+#include "psyq/libcd.h"
 
 extern FileInfo fileinfo[FILES_COUNT];
 

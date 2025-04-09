@@ -2,8 +2,8 @@
 #define NITRO_H
 
 #include "common.h"
-#include "psyq/SYS/TYPES.H"
-#include "psyq/LIBCD.H"
+#include "psyq/sys/types.h"
+#include "psyq/libcd.h"
 #include "types.h"
 
 #define FILES_COUNT 254

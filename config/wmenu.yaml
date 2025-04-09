@@ -27,8 +27,9 @@ options:
   section_order: [".rodata", ".text", ".data", ".bss"]
 
   symbol_addrs_path:
-    - config/symbol_addrs.wmenu.txt
+    - config/symbol_addrs.psyq.txt
     - config/symbol_addrs.slus_003.97.txt
+    - config/symbol_addrs.wmenu.txt
   reloc_addrs_path:
     - configs/reloc_addrs.wmenu.txt
 
